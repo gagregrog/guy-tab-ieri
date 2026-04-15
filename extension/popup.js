@@ -126,10 +126,10 @@ function makeEmpty() {
   empty.id = 'empty';
   const left = document.createElement('img');
   left.src = 'fieri/23.png';
-  left.style.cssText = 'width:22px;height:22px;vertical-align:middle;margin-right:6px;';
+  left.style.cssText = 'width:28px;height:28px;vertical-align:middle;margin-right:8px;';
   const right = document.createElement('img');
   right.src = 'fieri/34.png';
-  right.style.cssText = 'width:22px;height:22px;vertical-align:middle;margin-left:6px;';
+  right.style.cssText = 'width:28px;height:28px;vertical-align:middle;margin-left:8px;';
   empty.appendChild(left);
   empty.appendChild(document.createTextNode('No tabs in Flavortown'));
   empty.appendChild(right);

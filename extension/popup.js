@@ -56,10 +56,10 @@ function render(groups) {
       const ids = tabObjects.map(t => t.id);
       const sortedByIndex = [...tabObjects].sort((a, b) => a.index - b.index);
 
-      // Dim row and swap to countdown button immediately
-      row.style.opacity = '0.4';
+      // Swap to icy blue countdown button immediately
       row.style.pointerEvents = 'none';
       btn.style.pointerEvents = 'auto';
+      btn.style.background = 'linear-gradient(135deg, #00b4d8, #90e0ef)';
       btn.removeEventListener('click', handleCloseAll);
       btn.addEventListener('click', handleUndo, { once: true });
 
@@ -88,8 +88,8 @@ function render(groups) {
         clearInterval(countdown);
         // Restore the row immediately.
         row.style.transition = '';
-        row.style.opacity = '1';
         row.style.pointerEvents = '';
+        btn.style.background = '';
         btn.textContent = 'Close All';
         btn.removeEventListener('click', handleUndo);
         btn.addEventListener('click', handleCloseAll);

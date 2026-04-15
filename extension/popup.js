@@ -33,10 +33,7 @@ function render(groups) {
   const list = document.getElementById('host-list');
   const sorted = sortedHosts(groups);
   if (sorted.length === 0) {
-    const empty = document.createElement('div');
-    empty.id = 'empty';
-    empty.textContent = 'No tabs in Flavor Town 🔥';
-    list.appendChild(empty);
+    list.appendChild(makeEmpty());
     return;
   }
   list.replaceChildren();
@@ -124,14 +121,26 @@ function render(groups) {
   }
 }
 
+function makeEmpty() {
+  const empty = document.createElement('div');
+  empty.id = 'empty';
+  const left = document.createElement('img');
+  left.src = 'fieri/23.png';
+  left.style.cssText = 'width:22px;height:22px;vertical-align:middle;margin-right:6px;';
+  const right = document.createElement('img');
+  right.src = 'fieri/34.png';
+  right.style.cssText = 'width:22px;height:22px;vertical-align:middle;margin-left:6px;';
+  empty.appendChild(left);
+  empty.appendChild(document.createTextNode('No tabs in Flavortown'));
+  empty.appendChild(right);
+  return empty;
+}
+
 function checkEmpty() {
   const list = document.getElementById('host-list');
   if (list.querySelectorAll('.row').length === 0) {
     list.replaceChildren();
-    const empty = document.createElement('div');
-    empty.id = 'empty';
-    empty.textContent = 'No tabs in Flavor Town 🔥';
-    list.appendChild(empty);
+    list.appendChild(makeEmpty());
   }
 }
 

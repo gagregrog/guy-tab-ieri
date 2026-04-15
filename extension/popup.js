@@ -104,7 +104,7 @@ function render(groups) {
             return;
           }
           chrome.tabs.create({ url: sortedByIndex[i].url, active: false, index: sortedByIndex[i].index }, (newTab) => {
-            if (newTab) newTabObjects.push({ id: newTab.id, url: newTab.url, index: newTab.index });
+            if (newTab) newTabObjects.push({ id: newTab.id, url: sortedByIndex[i].url, index: newTab.index });
             recreate(i + 1);
           });
         }

@@ -1,28 +1,37 @@
 const assert = require('assert');
-const { groupTabsByHost, sortedHosts } = require('./extension/popup.js');
+const { groupTabsByHost, sortedHosts, hostnameIcon } = require('./extension/popup.js');
 
 // --- groupTabsByHost ---
 
 {
   const tabs = [
-    { id: 1, url: 'https://example.com/foo' },
-    { id: 2, url: 'https://example.com/bar' },
-    { id: 3, url: 'https://github.com/baz' },
+    { id: 1, url: 'https://example.com/foo', index: 0 },
+    { id: 2, url: 'https://example.com/bar', index: 1 },
+    { id: 3, url: 'https://github.com/baz', index: 2 },
   ];
   const groups = groupTabsByHost(tabs);
-  assert.deepStrictEqual(groups['example.com'], [1, 2], 'groups http tabs by hostname');
-  assert.deepStrictEqual(groups['github.com'], [3], 'groups second host correctly');
+  assert.deepStrictEqual(groups['example.com'], [
+    { id: 1, url: 'https://example.com/foo', index: 0 },
+    { id: 2, url: 'https://example.com/bar', index: 1 },
+  ], 'groups http tabs by hostname');
+  assert.deepStrictEqual(groups['github.com'], [
+    { id: 3, url: 'https://github.com/baz', index: 2 },
+  ], 'groups second host correctly');
   console.log('PASS: groups http/https tabs by hostname');
 }
 
 {
   const tabs = [
-    { id: 1, url: 'about:blank' },
-    { id: 2, url: 'not-a-url' },
-    { id: 3, url: 'file:///Users/foo/bar.html' },
+    { id: 1, url: 'about:blank', index: 0 },
+    { id: 2, url: 'not-a-url', index: 1 },
+    { id: 3, url: 'file:///Users/foo/bar.html', index: 2 },
   ];
   const groups = groupTabsByHost(tabs);
-  assert.deepStrictEqual(groups['chrome & system pages'], [1, 2, 3], 'groups system/unparseable tabs');
+  assert.deepStrictEqual(groups['chrome & system pages'], [
+    { id: 1, url: 'about:blank', index: 0 },
+    { id: 2, url: 'not-a-url', index: 1 },
+    { id: 3, url: 'file:///Users/foo/bar.html', index: 2 },
+  ], 'groups system/unparseable tabs');
   console.log('PASS: groups non-http tabs under chrome & system pages');
 }
 
@@ -33,9 +42,11 @@ const { groupTabsByHost, sortedHosts } = require('./extension/popup.js');
 }
 
 {
-  const tabs = [{ id: 1, url: '' }];
+  const tabs = [{ id: 1, url: '', index: 0 }];
   const groups = groupTabsByHost(tabs);
-  assert.deepStrictEqual(groups['chrome & system pages'], [1], 'empty URL goes to system pages');
+  assert.deepStrictEqual(groups['chrome & system pages'], [
+    { id: 1, url: '', index: 0 },
+  ], 'empty URL goes to system pages');
   console.log('PASS: groupTabsByHost handles empty string URL');
 }
 
@@ -69,6 +80,17 @@ const { groupTabsByHost, sortedHosts } = require('./extension/popup.js');
   assert.strictEqual(sorted.length, 1, 'single host returned');
   assert.strictEqual(sorted[0][0], 'only.com');
   console.log('PASS: sortedHosts handles single host');
+}
+
+// --- hostnameIcon ---
+
+{
+  const idx = hostnameIcon('google.com');
+  assert(idx >= 0 && idx <= 35, `index must be 0-35, got ${idx}`);
+  assert.strictEqual(hostnameIcon('google.com'), hostnameIcon('google.com'), 'same host always returns same icon');
+  assert.notStrictEqual(hostnameIcon('google.com'), hostnameIcon('github.com'), 'google.com and github.com get different icons');
+  assert.notStrictEqual(hostnameIcon('apple.com'), hostnameIcon('amazon.com'), 'apple.com and amazon.com get different icons');
+  console.log('PASS: hostnameIcon returns stable index in range 0-35');
 }
 
 console.log('\nAll tests passed.');

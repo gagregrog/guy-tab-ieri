@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Guy Tab-ieri",
+  "version": "1.0.0",
+  "description": "Close all tabs on the same host",
+  "permissions": ["tabs"],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Guy Tab-ieri",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "guy-tab-ieri@local",
+      "strict_min_version": "109.0"
+    }
+  }
+}

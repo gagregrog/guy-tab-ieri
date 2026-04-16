@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <style>
     body {
+      position: relative;
       width: 400px;
       min-width: 280px;
       max-width: 400px;
@@ -111,6 +112,22 @@
     button:hover { box-shadow: 0 0 8px #ff4500; }
     button:active { box-shadow: 0 0 4px #ff4500; transform: scale(0.97); }
 
+    /* ── Shortcut hint ── */
+    #shortcut-hint {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 10px;
+      color: #888;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid #444;
+      border-radius: 4px;
+      padding: 2px 5px;
+      letter-spacing: 0.5px;
+      pointer-events: none;
+      user-select: none;
+    }
+
     /* ── Empty state ── */
     #empty {
       color: #ff8c00;
@@ -121,6 +138,7 @@
   </style>
 </head>
 <body>
+  <div id="shortcut-hint">⌘ + ⌥ + T</div>
   <div id="header">
     <div class="flames">
       <span class="flame">🔥</span>

@@ -149,6 +149,21 @@ if (typeof chrome !== 'undefined' && chrome.tabs) {
     chrome.tabs.query({ currentWindow: true }, (tabs) => {
       render(groupTabsByHost(tabs));
     });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Tab') return;
+      const buttons = Array.from(document.querySelectorAll('#host-list button'));
+      if (buttons.length === 0) return;
+      const first = buttons[0];
+      const last = buttons[buttons.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    });
   });
 }
 

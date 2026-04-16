@@ -1,5 +1,7 @@
 # guy-tab-ieri
 
+![Demo](demo.gif)
+
 A cross-browser extension (Chrome/Firefox) that lets you close all tabs from the same hostname in one click, themed to Guy Fieri.
 
 ## Usage

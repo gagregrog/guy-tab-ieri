@@ -29,7 +29,7 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "guy-tab-ieri@local",
+      "id": "com.gagregrog.guy-tab-ieri",
       "strict_min_version": "109.0"
     }
   }

@@ -9,6 +9,15 @@
     "48": "icon.png",
     "128": "icon.png"
   },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "mac": "Command+Alt+T",
+        "default": "Ctrl+Alt+T"
+      },
+      "description": "Open Guy Tab-ieri"
+    }
+  },
   "action": {
     "default_popup": "popup.html",
     "default_title": "Guy Tab-ieri",

@@ -53,7 +53,21 @@ This persists until Firefox restarts.
 ./build-ff.sh
 ```
 
-Produces `guy-tab-ieri.xpi`. To install permanently on Firefox with signing disabled:
+Produces `guy-tab-ieri.xpi`.
+
+### Installing the signed release (recommended)
+
+Download the latest `.xpi` from the [GitHub Releases](../../releases) page. Because the extension is signed by Mozilla, you can install it directly:
+
+1. In Firefox, go to `about:addons`
+2. Click the gear icon → **Install Add-on From File**
+3. Select the downloaded `.xpi`
+
+The extension will persist across Firefox restarts without any configuration changes.
+
+### Installing an unsigned build
+
+To install permanently on Firefox with signing disabled:
 
 1. In Firefox, go to `about:config` and set `xpinstall.signatures.required` to `false`
 2. Go to `about:addons` → gear icon → **Install Add-on From File**
